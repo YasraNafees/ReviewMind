@@ -1,3 +1,8 @@
+.env
+node_modules/
+dist/
+dist-ssr
+
 # Logs
 logs
 *.log
@@ -6,9 +11,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-dist
-dist-ssr
 *.local
 
 # Editor directories and files
@@ -21,7 +23,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-.env
-node_modules/
-dist/
