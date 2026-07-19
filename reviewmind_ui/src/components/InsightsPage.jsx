@@ -1,51 +1,121 @@
 import styles from '../styles/InsightsPage.module.css';
 import EmptyState from './EmptyState';
 
-export default function InsightsPage({ summary, summaryLoading, onGenerate }) {
+
+export default function InsightsPage({
+  summary,
+  summaryLoading,
+  onGenerate
+}) {
+
 
   return (
+
     <div className={styles.card}>
 
+
       <div className={styles.header}>
+
         <div>
-          <p className={styles.title}>Full analysis</p>
+
+          <p className={styles.title}>
+            Full analysis
+          </p>
+
           <p className={styles.subtitle}>
             Detailed AI breakdown of review themes, patterns, and recommendations
           </p>
+
         </div>
+
+
 
         <button
           className={styles.genBtn}
           onClick={onGenerate}
           disabled={summaryLoading}
         >
-          {summaryLoading ? "Analyzing..." : "Run analysis"}
+
+          {
+            summaryLoading
+            ? "Analyzing..."
+            : "Run analysis"
+          }
+
         </button>
+
+
       </div>
 
 
-      {summary ? (
+
+
+      {
+        summary &&
+        typeof summary === "object" &&
+        Object.keys(summary).length > 0
+
+        ?
 
         <div className={`${styles.content} ${styles.hasContent}`}>
 
-          <pre className={styles.summaryText}>
-            {summary}
-          </pre>
+        {
+          Object.entries(summary).map(
+            ([cluster,text]) => (
+
+              <div
+                key={cluster}
+                className={styles.cluster}
+              >
+
+
+                <h3>
+                  {
+                    cluster.replace(
+                      "Cluster_",
+                      "Group "
+                    )
+                  }
+                </h3>
+
+
+                <pre className={styles.summaryText}>
+                  {text}
+                </pre>
+
+
+              </div>
+
+            )
+          )
+        }
+
 
         </div>
 
-      ) : (
+
+        :
+
 
         <EmptyState
+
           icon="insights"
+
           title="No insights generated"
-          description="Click 'Run analysis' and we'll go through all your reviews to find patterns, pain points, and actionable recommendations."
+
+          description="Run analysis to discover review patterns and recommendations."
+
           action="Run analysis"
+
           onAction={onGenerate}
+
         />
 
-      )}
+      }
+
 
     </div>
+
   );
+
 }

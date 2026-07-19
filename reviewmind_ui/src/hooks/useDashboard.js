@@ -1,30 +1,39 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { logError, logInfo, logDebug } from '../utils/logger';
+import { useState } from "react";
+import axios from "axios";
+import { logError, logInfo, logDebug } from "../utils/logger";
 
-const FILE = 'useDashboard.js';
-const API = 'http://127.0.0.1:8000';
+const FILE = "useDashboard.js";
+const API = "http://127.0.0.1:8000";
+
+
+const api = axios.create({
+  baseURL: API,
+  timeout: 120000,
+});
 
 
 export function useDashboard() {
 
-  const [activeNav, setActiveNav] = useState('overview');
+
+  const [activeNav, setActiveNav] = useState("overview");
 
   const [sentiments, setSentiments] = useState([]);
   const [clusters, setClusters] = useState([]);
 
-  const [summary, setSummary] = useState('');
+  
+  const [summary, setSummary] = useState(null);
 
-  const [question, setQuestion] = useState('');
-  const [botAnswer, setBotAnswer] = useState('');
+
+  const [question, setQuestion] = useState("");
+  const [botAnswer, setBotAnswer] = useState("");
 
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const [uploadMsg, setUploadMsg] = useState('');
-  const [uploadStatus, setUploadStatus] = useState('');
+  const [uploadMsg, setUploadMsg] = useState("");
+  const [uploadStatus, setUploadStatus] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [fetchError, setFetchError] = useState('');
+  const [fetchError, setFetchError] = useState("");
 
   const [summaryLoading, setSummaryLoading] = useState(false);
   const [botLoading, setBotLoading] = useState(false);
@@ -34,51 +43,76 @@ export function useDashboard() {
   const fetchDashboardData = async () => {
 
     setLoading(true);
-    setFetchError('');
+    setFetchError("");
 
     try {
 
-      logDebug(FILE,'fetch','Calling API');
-
-      const res = await axios.get(
-        `${API}/get-dashboard-data/`
+      logDebug(
+        FILE,
+        "fetch",
+        "Calling dashboard API"
       );
 
 
-      if(res.data?.sentiments){
+      const res = await api.get(
+        "/get-dashboard-data/"
+      );
+
+
+      const data = res.data;
+
+
+      if(data?.sentiments){
+
 
         setSentiments([
+
           {
-            name:'Negative',
-            value:res.data.sentiments.Negative || 0
+            name:"Negative",
+            value:Number(data.sentiments.Negative || 0)
           },
+
           {
-            name:'Neutral',
-            value:res.data.sentiments.Neutral || 0
+            name:"Neutral",
+            value:Number(data.sentiments.Neutral || 0)
           },
+
           {
-            name:'Positive',
-            value:res.data.sentiments.Positive || 0
+            name:"Positive",
+            value:Number(data.sentiments.Positive || 0)
           }
+
         ]);
 
-
-        setClusters(
-          res.data.clusters || []
-        );
 
       }
 
 
-    } catch(err){
-
-      logError(FILE,'fetch','Failed',err);
-
-      setFetchError(
-        'Backend not reachable. Is FastAPI running?'
+      setClusters(
+        Array.isArray(data?.clusters)
+        ? data.clusters
+        : []
       );
 
-    } finally {
+
+    }
+    catch(err){
+
+      logError(
+        FILE,
+        "fetch",
+        "Dashboard failed",
+        err
+      );
+
+
+      setFetchError(
+        "Unable to connect with backend."
+      );
+
+
+    }
+    finally{
 
       setLoading(false);
 
@@ -89,53 +123,68 @@ export function useDashboard() {
 
 
 
+
   const handleUpload = async()=>{
 
-    if(!selectedFile) return;
+
+    if(!selectedFile)
+      return;
 
 
-    setUploadMsg('Uploading...');
-    setUploadStatus('');
+
+    setUploadMsg("Uploading...");
+    setUploadStatus("");
 
 
-    const fd = new FormData();
 
-    fd.append(
-      'file',
+    const formData = new FormData();
+
+    formData.append(
+      "file",
       selectedFile
     );
 
 
     try{
 
-      await axios.post(
-        `${API}/upload-csv/`,
-        fd
+
+      const res = await api.post(
+        "/upload-csv/",
+        formData
       );
 
 
       setUploadMsg(
-        'Done! Hit Refresh to see charts.'
+        res.data?.message ||
+        "Upload completed successfully."
       );
 
-      setUploadStatus('success');
+
+      setUploadStatus("success");
 
 
-    }catch(err){
 
-      setUploadMsg(
-        'Upload failed.'
-      );
-
-      setUploadStatus('error');
+    }
+    catch(err){
 
 
       logError(
         FILE,
-        'upload',
-        'Failed',
+        "upload",
+        "Upload failed",
         err
       );
+
+
+      setUploadMsg(
+        "Upload failed."
+      );
+
+
+      setUploadStatus(
+        "error"
+      );
+
 
     }
 
@@ -145,139 +194,138 @@ export function useDashboard() {
 
 
 
-  const getSummary = async()=>{
-
-    setSummaryLoading(true);
-
-    setSummary('');
 
 
-    try{
+  const getSummary = async () => {
 
-      logInfo(
-        FILE,
-        'summary',
-        'Generating summary'
-      );
+  setSummaryLoading(true);
+  setSummary(null);
 
+  try {
 
-      const res = await axios.post(
-        `${API}/generate-summary/`
-      );
-
-
-      console.log(
-        "SUMMARY RESPONSE:",
-        res.data
-      );
+    logInfo(
+      FILE,
+      "summary",
+      "Generating AI summary"
+    );
 
 
-
-      if(res.data?.summary){
-
-
-       const formattedSummary =
-  Object.entries(res.data.summary)
-  .map(([cluster, text], index) => {
-
-    return (
-`========== Group ${index + 1} ==========
+    const res = await api.post(
+      "/generate-summary/"
+    );
 
 
-${text}`
-            );
-
-          })
-          .join("\n\n");
-
-
-        setSummary(
-          formattedSummary
-        );
+    console.log(
+      "SUMMARY RESPONSE:",
+      res.data
+    );
 
 
-      }else{
+    const data = res.data?.summary;
 
 
-        setSummary(
+    if (
+      data &&
+      typeof data === "object" &&
+      Object.keys(data).length > 0
+    ) {
+
+      setSummary(data);
+
+    } 
+    else {
+
+      setSummary({
+        "System Message":
           "No summary received from backend."
-        );
-
-
-      }
-
-
-    }catch(err){
-
-
-      setSummary(
-        "Could not generate summary."
-      );
-
-
-      logError(
-        FILE,
-        'summary',
-        'Failed',
-        err
-      );
-
-
-    }finally{
-
-      setSummaryLoading(false);
+      });
 
     }
 
-  };
+
+  } catch(err) {
 
 
+    logError(
+      FILE,
+      "summary",
+      "Summary generation failed",
+      err
+    );
 
+
+    setSummary({
+
+      "System Message":
+        "Unable to generate insights."
+
+    });
+
+
+  } finally {
+
+    setSummaryLoading(false);
+
+  }
+
+};
 
 
   const askBot = async()=>{
 
-    if(!question) return;
+
+    if(!question.trim())
+      return;
+
 
 
     setBotLoading(true);
 
 
     setBotAnswer(
-      "Looking through your reviews..."
+      "Analyzing reviews..."
     );
+
 
 
     try{
 
 
-      const res = await axios.post(
-        `${API}/ask-bot/?question=${encodeURIComponent(question)}`
+      const res = await api.post(
+
+        `/ask-bot/?question=${encodeURIComponent(question)}`
+
       );
 
 
       setBotAnswer(
-        res.data.answer
+
+        res.data?.answer ||
+        "No answer generated."
+
       );
 
 
-    }catch(err){
 
-
-      setBotAnswer(
-        "Something went wrong."
-      );
+    }
+    catch(err){
 
 
       logError(
         FILE,
-        'bot',
-        'Failed',
+        "bot",
+        "Bot failed",
         err
       );
 
 
-    }finally{
+      setBotAnswer(
+        "Unable to get AI response."
+      );
+
+
+    }
+    finally{
 
       setBotLoading(false);
 
@@ -289,11 +337,12 @@ ${text}`
 
 
 
+
   const totalReviews =
     sentiments.reduce(
       (a,c)=>a+c.value,
       0
-    ) || 0;
+    );
 
 
 
@@ -312,38 +361,45 @@ ${text}`
 
 
   const posPct =
-    totalReviews>0
-    ? Math.round((posCount/totalReviews)*100)
+    totalReviews
+    ? Math.round(
+        (posCount / totalReviews) * 100
+      )
     :0;
 
 
 
   const negPct =
-    totalReviews>0
-    ? Math.round((negCount/totalReviews)*100)
+    totalReviews
+    ? Math.round(
+        (negCount / totalReviews) * 100
+      )
     :0;
 
 
 
   const neuPct =
-    totalReviews>0
-    ? 100-posPct-negPct
+    totalReviews
+    ? 100 - posPct - negPct
     :0;
 
 
 
   const sentimentScore =
-    totalReviews>0
-    ? Math.round(((posCount-negCount)/totalReviews)*50+50)
+    totalReviews
+    ? Math.round(
+        ((posCount-negCount)
+        /totalReviews)*50+50
+      )
     :0;
 
 
 
   const maxComplaints =
-    clusters.length>0
+    clusters.length
     ? Math.max(
         ...clusters.map(
-          c=>c.complaints || 0
+          c=>Number(c.complaints || 0)
         )
       )
     :0;
@@ -353,26 +409,35 @@ ${text}`
 
   return {
 
+
     activeNav,
+
 
     sentiments,
     clusters,
 
+
     summary,
+
 
     question,
     botAnswer,
 
+
     selectedFile,
+
 
     uploadMsg,
     uploadStatus,
 
+
     loading,
     fetchError,
 
+
     summaryLoading,
     botLoading,
+
 
 
     setActiveNav,
@@ -383,20 +448,26 @@ ${text}`
     fetchDashboardData,
     handleUpload,
 
+
     getSummary,
     askBot,
 
 
+
     totalReviews,
+
 
     posPct,
     negPct,
     neuPct,
 
+
     sentimentScore,
+
 
     maxComplaints
 
   };
+
 
 }
