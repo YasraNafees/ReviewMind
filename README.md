@@ -13,7 +13,7 @@ ReviewMind doesn't just give "Positive/Negative" counts. It groups complaints (e
 
 ---
 
-## ✨ Key Features
+##  Key Features
 
 - **Sentiment Analysis:** Breaks down reviews into Positive, Neutral, and Negative categories with visual percentage bars.
 - **Complaint Clustering:** Groups similar complaints together automatically using AI to highlight the most common pain points.
@@ -117,7 +117,7 @@ ReviewMind/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Python 3.10+
@@ -182,7 +182,7 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🔒 Security Implementation
+## Security Implementation
 
 Unlike standard SPAs that keep users logged in for weeks using `localStorage`, ReviewMind uses **`sessionStorage`**.
 
@@ -190,7 +190,7 @@ Unlike standard SPAs that keep users logged in for weeks using `localStorage`, R
 
 ---
 
-## 🎨 How to Customize the Theme
+##  How to Customize the Theme
 
 No need to touch component files to change colors:
 
@@ -206,7 +206,7 @@ No need to touch component files to change colors:
 
 ---
 
-## 🐛 Debugging & Development
+##  Debugging & Development
 
 **Error tracking:** If an API call fails, check the browser console — the custom logger pinpoints exactly where it broke:
 ```
@@ -217,7 +217,7 @@ No need to touch component files to change colors:
 
 ---
 
-## 🛠️ Future Scope
+##  Future Scope
 
 - [ ] Upload history tracking (who uploaded what and when)
 - [ ] Delete/manage datasets
@@ -226,6 +226,6 @@ No need to touch component files to change colors:
 
 ---
 
-## 📄 License
+##  License
 
 This project is proprietary software. All rights reserved.

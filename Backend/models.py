@@ -20,4 +20,3 @@ class Review(Base):
 
 logger.info("Review model loaded successfully")
 
-print ("suceesfule")

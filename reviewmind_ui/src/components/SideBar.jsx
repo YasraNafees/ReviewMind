@@ -12,7 +12,7 @@ const navItems = [
 ];
 
 export default function Sidebar({ activeNav, setActiveNav, userName, onLogout }) {
-  // Name nahi mila toh 'User' likh do
+  
   const displayName = userName || 'User';
   const initials = displayName.charAt(0).toUpperCase();
 
@@ -34,7 +34,7 @@ export default function Sidebar({ activeNav, setActiveNav, userName, onLogout })
       <div className={styles.bottomSection}>
         <div className={styles.userArea}>
           <div className={styles.userAvatar}>{initials}</div>
-          {/* Yahan sirf Name show hoga, Email nahi */}
+          {}
           <div className={styles.userName}>{displayName}</div>
         </div>
         <button className={styles.logoutBtn} onClick={onLogout}>

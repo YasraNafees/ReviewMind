@@ -45,6 +45,6 @@ export function useAuth() {
     setIsLoggedIn(false); setEmail(''); setPassword(''); setUserName('');
   };
 
-  // Yahan return mein userName hai, userEmail nahi
+  
   return { isLoggedIn, email, password, loginError, loginLoading, userName, setEmail, setPassword, handleLogin, handleLogout };
 }

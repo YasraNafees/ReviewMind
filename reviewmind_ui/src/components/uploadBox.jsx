@@ -1,10 +1,8 @@
 
-// PEHLE THA: import styles from './UploadBox.module.css';
-// AB YEH HOGA:
 import styles from '../styles/UploadBox.module.css';
 import { UploadCloud, Check } from 'lucide-react';
 
-// ... baaki code same rahega
+
 export default function UploadBox({ selectedFile, uploadMsg, uploadStatus, onSelectFile, onUpload }) {
   return (
     <>

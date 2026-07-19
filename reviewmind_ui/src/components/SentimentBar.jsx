@@ -1,9 +1,8 @@
-// PEHLE THA: import styles from './SentimentBar.module.css';
-// AB YEH HOGA:
+
 import styles from '../styles/SentimentBar.module.css';
 import EmptyState from './EmptyState';
 
-// ... baaki code same rahega
+
 export default function SentimentBar({ totalReviews, negPct, neuPct, posPct, loading }) {
   if (!loading && totalReviews === 0) {
     return (

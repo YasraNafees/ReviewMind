@@ -73,7 +73,7 @@ function App() {
       <Sidebar
         activeNav={d.activeNav}
         setActiveNav={d.setActiveNav}
-        userName={auth.userName}   // agar Sidebar userName leta hai
+        userName={auth.userName}   
         onLogout={auth.handleLogout}
       />
 

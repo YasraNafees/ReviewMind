@@ -3,15 +3,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings:
-    DataBase_URL:str=os.getenv("DATABASE_URL")
-    Openrouter_api_key:str=os.getenv("OPENROUTER_API_KEY")
-    Openrouter_base_url :str=os.getenv("OPENROUTER_API_BASE_URL")
-    EMBEDDING_MODEL: str = "openai/text-embedding-3-small"
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+    OPENROUTER_API_BASE_URL = os.getenv("OPENROUTER_API_BASE_URL")
 
-    Chat_Model :str="google/gemini-2.5-flash-lite-preview-09-2025"
-    Chunk_size: int=1000
-    KMEANS_Cluster:int=2
-    RAG_Top_k_Result:int=3
-setting=Settings()
+    EMBEDDING_MODEL = "openai/text-embedding-3-small"
+    CHAT_MODEL = "google/gemma-3n-e4b-it"
 
-print("Configuration succeesful")
+    CHUNK_SIZE = 1000
+    KMEANS_CLUSTER = 2
+    RAG_TOP_K_RESULTS = 3
+
+setting = Settings()
+

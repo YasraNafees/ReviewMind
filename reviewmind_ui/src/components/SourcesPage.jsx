@@ -8,7 +8,7 @@ export default function SourcesPage({ totalReviews }) {
         <EmptyState 
           icon="sources" 
           title="No source data yet" 
-          description="Once reviews are processed, we'll show where they came from — Play Store, App Store, Trustpilot, etc." 
+          description="Once reviews are processed, we'll show where they came from  Play Store, App Store, Trustpilot, etc." 
         />
       </div>
     );
