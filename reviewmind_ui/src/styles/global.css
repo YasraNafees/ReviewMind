@@ -1,0 +1,47 @@
+/* ============================================
+   GLOBAL VARIABLES - Yahan se sab colors aate hain
+   ============================================ */
+:root {
+  --bg: #F5F4F1;
+  --sidebar-bg: #1A1A1A;
+  --card-bg: #FFFFFF;
+  --input-bg: #FAFAF8;
+  --border: #E8E6E3;
+  --border-light: #F0EEEB;
+  --sidebar-border: #2A2A2A;
+  
+  --text: #2D2D2D;
+  --text-secondary: #78756F;
+  --text-muted: #B0ADA7;
+  --text-on-dark: #E8E6E3;
+  --text-on-dark-muted: #8A8780;
+  
+  --accent: #2A9D8F;
+  --accent-dark: #21867A;
+  --accent-soft: #EDF8F6;
+  --accent-on-dark: #4ECDC4;
+  
+  --negative: #E63946;
+  --negative-soft: #FDECEA;
+  --neutral: #E9A23B;
+  --neutral-soft: #FDF6E8;
+  --positive: #2A9D8F;
+  --positive-soft: #EDF8F6;
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.06);
+  --font: 'Inter', system-ui, sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+input, button { font-family: var(--font); }

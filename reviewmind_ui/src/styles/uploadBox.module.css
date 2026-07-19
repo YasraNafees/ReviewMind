@@ -1,0 +1,12 @@
+.dropArea { border: 1.5px dashed var(--border); border-radius: var(--radius-lg); padding: 28px 20px; text-align: center; cursor: pointer; margin-bottom: 20px; background: var(--card-bg); transition: all 0.2s; }
+.dropArea:hover { border-color: var(--accent); background: var(--accent-soft); }
+.dropArea.hasFile { border-color: var(--accent); background: var(--accent-soft); }
+.dropIcon { margin-bottom: 8px; color: var(--text-muted); }
+.dropTitle { margin: 0 0 4px; font-weight: 600; font-size: 14px; color: var(--text); }
+.dropSubtitle { margin: 0; font-size: 12px; color: var(--text-muted); }
+.actionRow { margin-bottom: 20px; display: flex; gap: 12px; align-items: center; }
+.processBtn { padding: 10px 24px; background: var(--accent); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; font-size: 13px; transition: background 0.2s; }
+.processBtn:hover { background: var(--accent-dark); }
+.msgSuccess { color: var(--positive); font-size: 13px; }
+.msgError { color: var(--negative); font-size: 13px; }
+.msgDefault { color: var(--text-secondary); font-size: 13px; }

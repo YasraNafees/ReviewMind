@@ -1,0 +1,12 @@
+.card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 20px; }
+.title { font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 16px; }
+.barBg { display: flex; height: 10px; border-radius: 5px; overflow: hidden; margin-bottom: 14px; background: var(--input-bg); }
+.barNeg { background: var(--negative); transition: width 0.4s ease; }
+.barNeu { background: var(--neutral); transition: width 0.4s ease; }
+.barPos { background: var(--positive); transition: width 0.4s ease; }
+.legend { display: flex; gap: 24px; }
+.legendItem { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.dotNeg { background: var(--negative); }
+.dotNeu { background: var(--neutral); }
+.dotPos { background: var(--positive); }

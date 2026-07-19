@@ -1,0 +1,12 @@
+.card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 22px 24px; }
+.title { font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 4px; }
+.subtitle { font-size: 11px; color: var(--text-muted); margin: 0 0 14px; }
+.inputRow { display: flex; gap: 8px; margin-bottom: 14px; }
+.inputField { flex: 1; padding: 10px 14px; background: var(--input-bg); border: 1px solid var(--border); border-radius: var(--radius-md); font-size: 13px; outline: none; transition: border 0.2s; }
+.inputField::placeholder { color: var(--text-muted); }
+.inputField:focus { border-color: var(--accent); }
+.sendBtn { padding: 10px 18px; background: var(--accent); color: white; border: none; border-radius: var(--radius-md); cursor: pointer; font-weight: 500; font-size: 13px; white-space: nowrap; transition: background 0.2s; }
+.sendBtn:hover { background: var(--accent-dark); }
+.sendBtn:disabled { background: var(--text-muted); cursor: not-allowed; }
+.responseBox { background: var(--input-bg); border-radius: var(--radius-md); padding: 16px; font-size: 13px; color: var(--text-muted); min-height: 120px; line-height: 1.7; }
+.hasResponse { color: var(--text); }

@@ -1,0 +1,6 @@
+.card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); overflow: hidden; }
+.header { padding: 18px 24px; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+.title { font-size: 14px; font-weight: 600; color: var(--text); margin: 0; }
+.search { padding: 7px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 12px; outline: none; width: 220px; }
+.search:focus { border-color: var(--accent); }
+.body { padding: 20px 24px; color: var(--text-muted); font-size: 13px; text-align: center; }

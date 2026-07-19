@@ -1,0 +1,8 @@
+.card { background: var(--card-bg); border: 1px solid var(--border-light); border-radius: var(--radius-lg); padding: 22px 24px; margin-bottom: 20px; }
+.title { font-size: 14px; font-weight: 600; color: var(--text); margin: 0 0 16px; }
+.list { display: flex; flex-direction: column; gap: 14px; }
+.rowHead { display: flex; justify-content: space-between; margin-bottom: 5px; }
+.rowName { font-size: 13px; color: var(--text); font-weight: 500; }
+.rowCount { font-size: 12px; color: var(--text-muted); }
+.track { height: 6px; border-radius: 3px; background: var(--input-bg); }
+.fill { height: 100%; border-radius: 3px; background: #D4654A; transition: width 0.4s ease; }
