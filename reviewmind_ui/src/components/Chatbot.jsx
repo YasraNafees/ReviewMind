@@ -10,7 +10,7 @@ export default function ChatBot({ question, botAnswer, botLoading, onQuestionCha
         <button className={styles.sendBtn} onClick={onSend} disabled={botLoading || !question}>{botLoading ? '...' : 'Send'}</button>
       </div>
       <div className={`${styles.responseBox} ${botAnswer ? styles.hasResponse : ''}`}>
-        {botAnswer || 'Ask something — try "What\'s the most common complaint?"'}
+        {botAnswer || 'Ask something  try "What\'s the most common complaint?"'}
       </div>
     </div>
   );
