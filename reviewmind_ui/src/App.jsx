@@ -4,7 +4,7 @@ import { useAuth } from "./hooks/useAuth";
 import { useDashboard } from "./hooks/useDashboard";
 
 import LoginScreen from "./components/LoginScreen";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/SideBar";
 import OverviewPage from "./components/OverviewPage";
 import ReviewsPage from "./components/ReviewPage";
 import ComplaintsPage from "./components/ComplaintsPage";
