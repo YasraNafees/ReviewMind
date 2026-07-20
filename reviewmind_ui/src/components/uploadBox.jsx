@@ -1,5 +1,5 @@
 
-import styles from '../styles/UploadBox.module.css';
+import styles from '../styles/uploadBox.module.css';
 import { UploadCloud, Check } from 'lucide-react';
 
 

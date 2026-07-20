@@ -10,13 +10,13 @@ export function useAuth() {
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const [loginLoading, setLoginLoading] = useState(false);
-  const [userName, setUserName] = useState(''); // userEmail ki jagah userName
+  const [userName, setUserName] = useState(''); 
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         setIsLoggedIn(true);
-        // Email se name nikalo (admin@test.com se "admin" nikal lega)
+        
         const extractedName = session.user.user_metadata?.full_name || session.user.email.split('@')[0];
         setUserName(extractedName);
         logInfo(FILE, 'session', 'Found', extractedName);
@@ -32,7 +32,7 @@ export function useAuth() {
       else { 
         logInfo(FILE, 'login', 'Success'); 
         setIsLoggedIn(true); 
-        // Yahan bhi name nikalo
+        
         const extractedName = data.user.user_metadata?.full_name || data.user.email.split('@')[0];
         setUserName(extractedName);
       }

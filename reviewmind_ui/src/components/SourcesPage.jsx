@@ -14,7 +14,7 @@ export default function SourcesPage({ totalReviews }) {
     );
   }
 
-  // Jab data aayega, yeh list render hogi
+  
   const sources = [
     { name: 'Google Play Store', count: 0, color: '#2A9D8F' },
     { name: 'App Store', count: 0, color: '#E9A23B' },

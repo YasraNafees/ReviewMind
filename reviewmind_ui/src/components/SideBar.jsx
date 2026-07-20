@@ -1,5 +1,5 @@
 import { LayoutDashboard, FileText, AlertTriangle, Sparkles, Globe, LogOut } from 'lucide-react';
-import styles from '../styles/Sidebar.module.css';
+import styles from '../styles/SideBar.module.css';
 import { logDebug } from '../utils/logger';
 
 const FILE = 'Sidebar.jsx';

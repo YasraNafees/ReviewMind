@@ -19,12 +19,7 @@ export default function AiInsights({
 
 
 
-    // Backend object response handle
-    // {
-    //   Cluster_0: "...",
-    //   Cluster_1: "..."
-    // }
-
+  
     if (typeof summary === "object") {
 
 
@@ -53,7 +48,7 @@ ${text}`
 
 
 
-    // String response handle
+    
 
     if (typeof summary === "string") {
 

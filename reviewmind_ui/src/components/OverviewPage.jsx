@@ -1,10 +1,13 @@
-import UploadBox from './UploadBox';
+
+import UploadBox from "./uploadBox";   
+import ChatBot from "./Chatbot";        
 import KpiCards from './KpiCards';
 import SentimentBar from './SentimentBar';
 import ComplaintGroups from './ComplaintsGroups';
 import AiInsights from './AiInsights';
-import ChatBot from './ChatBot';
-import styles from "../styles/App.module.css";
+import styles from "../styles/SideBar.module.css"; 
+
+
 
 
 export default function OverviewPage(d) {

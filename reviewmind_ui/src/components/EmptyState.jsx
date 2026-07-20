@@ -1,10 +1,7 @@
 import { BarChart3, FileText, Lightbulb, Globe, AlertTriangle } from 'lucide-react';
-// PEHLE THA: import styles from './EmptyState.module.css';
-// AB YEH HOGA:
+
 import styles from '../styles/EmptyState.module.css';
 
-
-// ... baaki code same rahega
 
 const iconMap = { sentiment: BarChart3, reviews: FileText, insights: Lightbulb, sources: Globe, complaints: AlertTriangle };
 
