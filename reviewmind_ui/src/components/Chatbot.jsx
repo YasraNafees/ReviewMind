@@ -1,4 +1,4 @@
-import styles from '../styles/ChatBot.module.css';
+import styles from '../styles/Chatbot.module.css';
 
 export default function ChatBot({ question, botAnswer, botLoading, onQuestionChange, onSend }) {
   return (
